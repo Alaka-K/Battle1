@@ -15,3 +15,4 @@ gem "webrick", "~> 1.7"
 gem "capybara", "~> 3.36"
 
 gem "sinatra-reloader", "~> 1.0"
+gem "launchy", "~> 2.5"

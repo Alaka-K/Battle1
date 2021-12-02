@@ -5,6 +5,7 @@ class Battle < Sinatra::Base
   configure :development do
     register Sinatra::Reloader
   end
+  enable :sessions
 
   get '/' do
     'Testing infrastructure working!'
@@ -16,10 +17,15 @@ class Battle < Sinatra::Base
 
   post '/names' do
     p params
-   @Name1 = params[:Name1]
-   @Name2 = params[:Name2]
-   erb :play
+   session[:Name1] = params[:Name1]
+   session[:Name2] = params[:Name2]
+   redirect '/play'
   end
-
+  
+  get '/play' do
+    @Name1 = session[:Name1]
+    @Name2 = session[:Name2]
+    erb :play
+  end
   run! if app_file == $0
 end
